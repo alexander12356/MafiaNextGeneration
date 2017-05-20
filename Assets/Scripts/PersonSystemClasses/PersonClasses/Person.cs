@@ -1,42 +1,49 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 
-namespace Beansjam.PersonSystemClasses.PersonClasses
+using UnityEngine;
+
+using MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses;
+
+namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
 {
     public class Person : MonoBehaviour
     {
-        private enum State
+        public BaseBehavior BaseBehavior;
+
+        private SpriteRenderer m_SpriteRenderer;
+
+        public void Awake()
         {
-            Patrol
+            m_SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        private State m_State = State.Patrol;
-        private Vector3 m_MovingTarget;
-        private float MOVING_RANGE = 0.01f;
-
-        public Vector2 randomBounds;
-
-        private void Start()
+        public void UpdatePerson()
         {
-            m_MovingTarget = transform.position;
+            BaseBehavior.UpdateBehavior();
+
+            CheckDistance();
         }
 
-        private void Update()
+        private void CheckDistance()
         {
-            switch(m_State)
+            var personList = PersonManager.Instance.PersonList;
+        }
+
+        public void SetBehaviorType(string behaviorType)
+        {
+            Destroy(BaseBehavior);
+
+            switch (behaviorType)
             {
-                case State.Patrol:
-                    PatrolUpdate();
+                case "Mafia":
+                    m_SpriteRenderer.color = Color.red;
+                    BaseBehavior = gameObject.AddComponent<Mafia>();
+                    break;
+                case "Policeman":
+                    m_SpriteRenderer.color = Color.blue;
+                    BaseBehavior = gameObject.AddComponent<Policeman>();
                     break;
             }
-        }
-
-        private void PatrolUpdate()
-        {
-            if (Vector3.Distance(transform.position,  m_MovingTarget) < MOVING_RANGE)
-            {
-                m_MovingTarget = PersonManager.Instance.GetRandomFromRect();
-            }
-            transform.position = Vector3.MoveTowards(transform.position, m_MovingTarget, Time.deltaTime);
         }
     }
 }

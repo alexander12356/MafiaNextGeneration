@@ -1,16 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-public class Policeman : MonoBehaviour {
+namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
+{
+    public class Policeman : BaseBehavior
+    {
+        private Transform m_TargetTransform;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        protected override void Start()
+        {
+            base.Start();
+            BehaviorType = "Policeman";
+        }
+
+        public override void UpdateBehavior()
+        {
+            switch (CurrentState)
+            {
+                case State.Patrol:
+                    PatrolUpdate();
+                    break;
+                case State.Hunting:
+                    HuntingUpdate();
+                    break;
+            }
+        }
+
+        private void HuntingUpdate()
+        {
+            transform.position = Vector2.MoveTowards(transform.position, m_TargetTransform.position, Time.deltaTime);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.GetComponent<BaseBehavior>().BehaviorType == "Mafia")
+            {
+                SetState(State.Hunting);
+                m_TargetTransform = collision.transform;
+            }
+        }
+    }
 }

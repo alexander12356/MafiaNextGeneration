@@ -1,16 +1,13 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
 {
-    public class Mafia : BaseBehavior
+    public class Citizen : BaseBehavior
     {
-        private Vector2 m_MovingTarget;
-
         protected override void Start()
         {
             base.Start();
-            BehaviorType = "Mafia";
+            BehaviorType = "Citizen";
         }
 
         public override void UpdateBehavior()
@@ -20,15 +17,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
                 case State.Patrol:
                     PatrolUpdate();
                     break;
-                case State.RunAway:
-                    RunUpdate();
-                    break;
             }
-        }
-
-        private void RunUpdate()
-        {
-            throw new NotImplementedException();
         }
     }
 }

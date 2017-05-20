@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1233961797}
   - component: {fileID: 1233961796}
   m_Layer: 0
-  m_Name: SpeciesManager
+  m_Name: PersonManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,14 +224,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8c739792283794ab9d4eaa7ce990f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SpeciePrefab: {fileID: 114453463602011962, guid: af5f8d4c1668bde4c9c2139962d8098f,
+  m_PersonPrefab: {fileID: 114453463602011962, guid: af5f8d4c1668bde4c9c2139962d8098f,
     type: 2}
-  SPECIES_SPAWN_TIME: 1
-  SpawnRadius: 3
-  PersonCount: 0
-  CreatePersonTime: 1
-  DeadPersonTime: 1
+  SpawnRadius: 4
   InitPersonCount: 1000
+  CreatePersonTime: 0.2
+  DeadPersonTime: 0.5
+  MutationFrequency: 1
+  PolicemanMutationChance: 0.1
+  MafiaMutationChance: 0.25
+  PersonCount: 0
 --- !u!4 &1233961797
 Transform:
   m_ObjectHideFlags: 0

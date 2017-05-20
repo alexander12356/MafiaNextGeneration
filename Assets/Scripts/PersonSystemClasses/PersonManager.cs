@@ -1,28 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 
-using Beansjam.PersonSystemClasses.PersonClasses;
+using MafiaNextGeneration.PersonSystemClasses.PersonClasses;
+using MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses;
 
-namespace Beansjam.PersonSystemClasses
+namespace MafiaNextGeneration.PersonSystemClasses
 {
     public class PersonManager : MonoBehaviour
     {
         private static PersonManager m_Instance;
 
         [SerializeField]
-        private Person m_SpeciePrefab;
-
-        public float SPECIES_SPAWN_TIME;
+        private Person m_PersonPrefab = null;
+        
         public float SpawnRadius;
-        public int PersonCount = 0;
-
-        public float CreatePersonTime = 1;
-        public float DeadPersonTime = 1;
         public int InitPersonCount = 1000;
 
+        [Header("Population")]
+        public float CreatePersonTime = 1;
+        public float DeadPersonTime = 1;
+
+        [Header("Mutation")]
+        public float MutationFrequency;
+        public float PolicemanMutationChance;
+        public float MafiaMutationChance;
+
+        [Header("Inforimation")]
+        public int PersonCount = 0;
+
+        private float m_CreatePersonTimer;
+        private float m_DeadPersonTimer;
+        private float m_MutationFrequencyTimer;
+
         private List<Person> m_PersonList = new List<Person>();
+
+        public List<Person> PersonList
+        {
+            get
+            {
+                return m_PersonList;
+            }
+        }
 
         public static PersonManager Instance
         {
@@ -46,24 +65,93 @@ namespace Beansjam.PersonSystemClasses
         {
             for (int i = 0; i < p_Count; i++)
             {
-                CreateSpecies();
+                var person = CreatePerson();
+                person.transform.position = GetRandomPos();
+                m_PersonList.Add(person);
             }
         }
 
         public void Update()
         {
-            
+            m_CreatePersonTimer += Time.deltaTime;
+            m_DeadPersonTimer += Time.deltaTime;
+            m_MutationFrequencyTimer += Time.deltaTime;
+
+            if (m_CreatePersonTimer > CreatePersonTime)
+            {
+                GiveBirth();
+                m_CreatePersonTimer = 0.0f;
+            }
+
+            if (m_DeadPersonTimer > DeadPersonTime)
+            {
+                DeadPerson();
+                m_DeadPersonTimer = 0.0f;
+            }
+
+            if (m_MutationFrequencyTimer > MutationFrequency)
+            {
+                CheckMutations();
+            }
+
+            for (int i = 0; i < m_PersonList.Count - 10; i++)
+            {
+                m_PersonList[i].UpdatePerson();
+            }
+
+            PersonCount = m_PersonList.Count;
         }
 
-        private void CreateSpecies()
+        private Person CreatePerson()
         {
-            var l_Specie = Instantiate(m_SpeciePrefab);
-            l_Specie.transform.position = GetRandomFromRect();
+            var person = Instantiate(m_PersonPrefab, transform);
+
+            var citizenBeahvior = person.gameObject.AddComponent<Citizen>();
+            person.BaseBehavior = citizenBeahvior;
+            
+            return person;
         }
 
-        public Vector2 GetRandomFromRect()
+        private void DeadPerson()
+        {
+            var l_Index = Random.Range(0, m_PersonList.Count - 1);
+            Destroy(m_PersonList[l_Index].gameObject);
+            m_PersonList.RemoveAt(l_Index);
+        }
+
+        public Vector2 GetRandomPos()
         {
             return Random.insideUnitCircle * SpawnRadius;
+        }
+
+        private void GiveBirth()
+        {
+            var person = CreatePerson();
+
+            var motherIndex = Random.Range(0, m_PersonList.Count);
+            person.transform.position = m_PersonList[motherIndex].transform.position;
+
+            m_PersonList.Add(person);
+        }
+
+        private void CheckMutations()
+        {
+            float mafiaChance = Random.Range(0.0f, 100.0f);
+            float policemanChance = Random.Range(0.0f, 100.0f);
+
+            if (mafiaChance < MafiaMutationChance)
+            {
+                var randomIndex = Random.Range(0, m_PersonList.Count - 1);
+
+                m_PersonList[randomIndex].SetBehaviorType("Mafia");
+            }
+
+            if (policemanChance < MafiaMutationChance)
+            {
+                var randomIndex = Random.Range(0, m_PersonList.Count - 1);
+
+                m_PersonList[randomIndex].SetBehaviorType("Policeman");
+            }
         }
     }
 }
