@@ -41,16 +41,28 @@ namespace MafiaNextGeneration.CardManagerClasses
             CardsList.Remove(cardId);
         }
 
-        [ContextMenu("Use card")]
+        [ContextMenu("Use killer card")]
         private void UseKillCard()
         {
             UseCard("KillerCard");
         }
 
-        [ContextMenu("Unuse hunt policeman")]
+        [ContextMenu("Unuse killer card")]
         private void UnuseKillCard()
         {
             UnuseCard("KillerCard");
+        }
+
+        [ContextMenu("Use Invisibility card")]
+        private void UseInvisibilityCard()
+        {
+            UseCard("Invisibility");
+        }
+
+        [ContextMenu("Unuse Invisibility card")]
+        private void UnuseInvisibilityCard()
+        {
+            UnuseCard("Invisibility");
         }
     }
 }

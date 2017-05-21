@@ -51,25 +51,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8c739792283794ab9d4eaa7ce990f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PersonManagePrefab: {fileID: 114597373971834592}
   m_PersonPrefab: {fileID: 114453463602011962, guid: af5f8d4c1668bde4c9c2139962d8098f,
     type: 2}
-  SpawnRadius: 4
+  SpawnRadius: 5
   InitPersonCount: 1000
   CreatePersonTime: 0.2
   DeadPersonTime: 0.5
   MutationFrequency: 3
   PersonMutationChance:
-  - FromId: 0
-    TargetId: 1
-    Chance: 1
-  - FromId: 1
-    TargetId: 2
-    Chance: 0
-  - FromId: 0
-    TargetId: 6
-    Chance: 0
-  - FromId: 2
+  - FromId: -3
     TargetId: 3
+    Chance: 1
+  - FromId: 3
+    TargetId: 4
+    Chance: 0
+  - FromId: -3
+    TargetId: -2
+    Chance: 0
+  - FromId: 4
+    TargetId: 5
     Chance: 0
   PersonBuffChance: []
   CitizenDeathrate: 0
@@ -82,3 +83,5 @@ MonoBehaviour:
   MafiaCount: 0
   PolicemanCount: 0
   MafiaKillerCount: 0
+  BuffList: []
+  IsGameStarted: 0

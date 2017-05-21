@@ -8,6 +8,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
         {
             base.Start();
             BehaviorType = "Citizen";
+            ClassVisualization.ConformNewClassView(gameObject, PersonType.Citizen);
         }
 
         public override void UpdateBehavior()

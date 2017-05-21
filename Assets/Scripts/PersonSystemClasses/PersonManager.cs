@@ -31,23 +31,52 @@ namespace MafiaNextGeneration.PersonSystemClasses
     [System.Serializable]
     public struct PersonBuffChance
     {
-        public string buffId;
+        public BuffType BuffType;
         public float Chance;
+
+        public PersonBuffChance(BuffType buffType, float chance)
+        {
+            BuffType = buffType;
+            Chance = chance;
+        }
+    }
+
+    [System.Serializable]
+    public struct BuffData
+    {
+        public BuffType BuffId;
+        public int Count;
+
+        public BuffData(BuffType buffId, int count)
+        {
+            BuffId = buffId;
+            Count = count;
+        }
     }
 
     public enum PersonType
     {
-        Citizen,
-        Mafia,
-        MafiaKiller,
-        MafiaKillerBugai,
-        MafiaKillerAgility,
-        MafiaKillerIntelect,
-        Policeman
+        Policeman = -2,
+        Citizen = -3,
+        Mafia = 3,
+        MafiaKiller = 4,
+        MafiaKillerBugai = 5,
+        MafiaKillerAgility = -1,
+        MafiaKillerIntelect = 2
+    }
+
+    public enum BuffType
+    {
+        Invisibility = 1,
+        Robber = 6,
+        Spy = 7,
+        TrueSight = 8,
+        BountyHunter = 9
     }
 
     public class PersonManager : MonoBehaviour
     {
+        public PersonManager PersonManagePrefab;
         private static PersonManager m_Instance;
 
         [SerializeField]
@@ -84,6 +113,9 @@ namespace MafiaNextGeneration.PersonSystemClasses
         public int MafiaCount = 0;
         public int PolicemanCount = 0;
         public int MafiaKillerCount = 0;
+        public List<BuffData> BuffList = new List<BuffData>();
+
+        public bool IsGameStarted = false;
 
         private float m_CreatePersonTimer;
         private float m_DeadPersonTimer;
@@ -101,12 +133,50 @@ namespace MafiaNextGeneration.PersonSystemClasses
         
         public void Awake()
         {
-            m_Instance = this;
+            if (m_Instance == null)
+            {
+                m_Instance = this;
+            }
+            else
+            {
+                m_Instance = null;
+                Destroy(gameObject);
+                Instantiate(m_Instance.PersonManagePrefab);
+            }
         }
 
-        public void Start()
+        public void LeaveWorld()
         {
+            GameController.Instance.Save();
+            Destroy(gameObject);
+            m_Instance = null;
+            enabled = false;
+        }
+
+        public void StartNewGame(int id)
+        {
+            SetInitPos(id);
+
             InitPersons(InitPersonCount);
+        }
+
+        private void SetInitPos(int id)
+        {
+            switch (id)
+            {
+                case 1:
+                    transform.position = new Vector3(-10.0f, -10.0f, 0.0f);
+                    break;
+                case 2:
+                    transform.position = new Vector3(-10.0f, 10.0f, 0.0f);
+                    break;
+                case 3:
+                    transform.position = new Vector3(10.0f, 10.0f, 0.0f);
+                    break;
+                case 4:
+                    transform.position = new Vector3(10.0f, -10.0f, 0.0f);
+                    break;
+            }
         }
 
         private void AddNewPerson(PersonType personType, Person person)
@@ -176,7 +246,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
             for (int i = 0; i < p_Count; i++)
             {
                 var person = CreatePerson();
-                person.transform.position = GetRandomPos();
+                person.transform.localPosition = GetRandomPos();
                 AddNewPerson(PersonType.Citizen, person);
             }
             PersonCount = p_Count;
@@ -277,6 +347,11 @@ namespace MafiaNextGeneration.PersonSystemClasses
 
         private void GiveBirth()
         {
+            if (GetPersonList(PersonType.Citizen).PersonList.Count == 0)
+            {
+                return;
+            }
+
             var person = CreatePerson();
 
             var motherIndex = Random.Range(0, GetPersonList(PersonType.Citizen).PersonList.Count);
@@ -308,6 +383,11 @@ namespace MafiaNextGeneration.PersonSystemClasses
                     var targetId = PersonMutationChance[i].TargetId;
                     var randomIndex = Random.Range(0, GetPersonList(fromId).PersonList.Count);
 
+                    if (GetPersonList(fromId).PersonList.Count == 0)
+                    {
+                        return;
+                    }
+
                     GetPersonList(fromId).PersonList[randomIndex].SetBehaviorType(targetId);
                     AddNewPerson(targetId, GetPerson(fromId, randomIndex));
                     GetPersonList(fromId).PersonList.RemoveAt(randomIndex);
@@ -336,21 +416,137 @@ namespace MafiaNextGeneration.PersonSystemClasses
                 if (PersonBuffChance[i].Chance < buffChance)
                 {
                     var randomIndex = Random.Range(0, GetPersonList(PersonType.Mafia).PersonList.Count);
-
-                    (GetPersonList(PersonType.Mafia).PersonList[randomIndex].BaseBehavior as Mafia).SetBuff(PersonBuffChance[i].buffId);
+                    if (!GetPerson(PersonType.Mafia, randomIndex).IsHaveBuff(PersonBuffChance[i].BuffType))
+                    {
+                        GetPersonList(PersonType.Mafia).PersonList[randomIndex].SetBuff(PersonBuffChance[i].BuffType);
+                        AddBuff(PersonBuffChance[i].BuffType);
+                    }
                 }
             }
         }
 
-        public void ChangeBuffChance(string buffId, float value)
+        public void ChangeBuffChance(BuffType buffId, float value)
         {
             for (int i = 0; i < PersonBuffChance.Count; i++)
             {
-                if (PersonBuffChance[i].buffId == buffId)
+                if (PersonBuffChance[i].BuffType == buffId)
                 {
                     var personBuff = PersonBuffChance[i];
                     personBuff.Chance += value;
                     PersonBuffChance[i] = personBuff;
+                    return;
+                }
+            }
+
+            var newPersonBuffChance = new PersonBuffChance(buffId, value);
+            PersonBuffChance.Add(newPersonBuffChance);
+        }
+
+        private void AddBuff(BuffType buffType)
+        {
+            for (int i = 0; i < BuffList.Count; i++)
+            {
+                if (BuffList[i].BuffId == buffType)
+                {
+                    var buffData = BuffList[i];
+                    buffData.Count++;
+                    BuffList[i] = buffData;
+                    break;
+                }
+            }
+
+            BuffData newBuffData = new BuffData(buffType, 1);
+            BuffList.Add(newBuffData);
+        }
+
+        public void RemoveBuff(BuffType buffType)
+        {
+            for (int i = 0; i < BuffList.Count; i++)
+            {
+                if (BuffList[i].BuffId == buffType)
+                {
+                    var buffData = BuffList[i];
+                    buffData.Count--;
+                    BuffList[i] = buffData;
+                    break;
+                }
+            }
+        }
+
+        public WorldData SaveData()
+        {
+            var worldData = new WorldData();
+            worldData.CreatePersonTime = CreatePersonTime;
+            worldData.DeadPersonTime = DeadPersonTime;
+            worldData.MutationFrequency = MutationFrequency;
+            worldData.PersonMutationChance = PersonMutationChance;
+            worldData.PersonBuffChance = PersonBuffChance;
+            worldData.CitizenDeathrate = CitizenDeathrate;
+            worldData.MafiaArrestChance = MafiaArrestChance;
+            worldData.PolicemanKilledChance = PolicemanKilledChance;
+            worldData.DiminishingMafia = DiminishingMafia;
+            worldData.Invisibility = Invisibility;
+            worldData.PersonCount = PersonCount;
+            worldData.CitizenCount = CitizenCount;
+            worldData.MafiaCount = MafiaCount;
+            worldData.PolicemanCount = PolicemanCount;
+            worldData.MafiaKillerCount = MafiaKillerCount;
+            worldData.BuffList = BuffList;
+
+            var personDataList = new List<PersonDataList>();
+            for (int i = 0; i < m_PersonList.Count; i++)
+            {
+                PersonDataList dataList;
+                dataList.Type = m_PersonList[i].Id;
+                dataList.DataList = new List<PersonData>();
+                for (int j = 0; j < m_PersonList[i].PersonList.Count; j++)
+                {
+                    PersonData data;
+                    data.BuffList = m_PersonList[i].PersonList[j].BuffList;
+                    dataList.DataList.Add(data);
+                }
+                personDataList.Add(dataList);
+            }
+            worldData.PersonDataList = personDataList;
+
+            return worldData;
+        }
+
+        public void LoadData(int id, WorldData worldData)
+        {
+            CreatePersonTime = worldData.CreatePersonTime;
+            DeadPersonTime = worldData.DeadPersonTime;
+            MutationFrequency = worldData.MutationFrequency;
+            PersonMutationChance = worldData.PersonMutationChance;
+            PersonBuffChance = worldData.PersonBuffChance;
+            CitizenDeathrate = worldData.CitizenDeathrate;
+            MafiaArrestChance = worldData.MafiaArrestChance;
+            PolicemanKilledChance = worldData.PolicemanKilledChance;
+            DiminishingMafia = worldData.DiminishingMafia;
+            Invisibility = worldData.Invisibility;
+            PersonCount = worldData.PersonCount;
+            CitizenCount = worldData.CitizenCount;
+            MafiaCount = worldData.MafiaCount;
+            PolicemanCount = worldData.PolicemanCount;
+            MafiaKillerCount = worldData.MafiaKillerCount;
+            BuffList = worldData.BuffList;
+
+            SetInitPos(id);
+
+            for (int i = 0; i < worldData.PersonDataList.Count; i++)
+            {
+                for (int j = 0; j < worldData.PersonDataList[i].DataList.Count; j++)
+                {
+                    var person = CreatePerson();
+                    person.transform.localPosition = GetRandomPos();
+                    AddNewPerson(worldData.PersonDataList[i].Type, person);
+
+                    person.SetBehaviorType((worldData.PersonDataList[i].Type));
+
+                    for (int k = 0; k < worldData.PersonDataList[i].DataList[j].BuffList.Count; k++)
+                    {
+                        person.SetBuff(worldData.PersonDataList[i].DataList[j].BuffList[k]);
+                    }
                 }
             }
         }

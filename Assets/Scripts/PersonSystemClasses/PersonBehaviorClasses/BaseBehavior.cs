@@ -39,11 +39,11 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
 
         protected void PatrolUpdate()
         {
-            if (Vector2.Distance(transform.position, m_MovingTarget) < MOVING_RANGE)
+            if (Vector2.Distance(transform.localPosition, m_MovingTarget) < MOVING_RANGE)
             {
                 m_MovingTarget = PersonManager.Instance.GetRandomPos();
             }
-            transform.position = Vector3.MoveTowards(transform.position, m_MovingTarget, Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, m_MovingTarget, Time.deltaTime);
         }
     }
 }

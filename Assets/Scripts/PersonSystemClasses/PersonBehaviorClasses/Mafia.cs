@@ -6,14 +6,13 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
     public class Mafia : BaseBehavior
     {
         private PersonType m_SubclassId;
-        private string m_BuffType;
-        private string m_CharaceristicId;
+        private BuffType m_BuffType;
 
         protected override void Start()
         {
             base.Start();
             BehaviorType = "Mafia";
-            m_SpriteRenderer.color = Color.red;
+            ClassVisualization.ConformNewClassView(gameObject, PersonType.Mafia);
         }
 
         public override void UpdateBehavior()
@@ -41,10 +40,10 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
             switch (id)
             {
                 case PersonType.MafiaKiller:
-                    m_SpriteRenderer.color = new Color(255.0f / 255.0f, 121 / 255.0f, 0 / 255.0f);
+                    ClassVisualization.ConformNewSubclassView(gameObject, PersonType.MafiaKiller);
                     break;
                 case PersonType.MafiaKillerBugai:
-                    m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
+                    ClassVisualization.ConformNewSubclassView(gameObject, PersonType.MafiaKillerBugai);
                     break;
                 case PersonType.MafiaKillerAgility:
                     //m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
