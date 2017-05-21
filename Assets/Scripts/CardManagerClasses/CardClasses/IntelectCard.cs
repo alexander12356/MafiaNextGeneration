@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 using MafiaNextGeneration.PersonSystemClasses;
 
 namespace MafiaNextGeneration.CardManagerClasses.CardClasses
 {
-    public class AgilityCard : BaseCard
+    public class IntelectCard : BaseCard
     {
         public float Chance;
 

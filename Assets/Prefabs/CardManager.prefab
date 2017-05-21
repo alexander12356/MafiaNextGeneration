@@ -58,3 +58,12 @@ MonoBehaviour:
   - CardID: KillerCard
     CardPrefab: {fileID: 114306710654598698, guid: 7118262016f4a354a8642ef2d887f38b,
       type: 2}
+  - CardID: KillerCardAgility
+    CardPrefab: {fileID: 114128527932601250, guid: 60a93676926af3f49b67a84f6e0eb60f,
+      type: 2}
+  - CardID: KillerCardBugai
+    CardPrefab: {fileID: 114855127151511894, guid: 9afbe7889f3e04746951233ba178dad2,
+      type: 2}
+  - CardID: KillerCardIntelect
+    CardPrefab: {fileID: 114027433527119848, guid: 53e5cadb008800749bd634c986cedd6a,
+      type: 2}

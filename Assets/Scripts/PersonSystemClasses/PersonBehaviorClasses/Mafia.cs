@@ -46,7 +46,10 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
                     ClassVisualization.ConformNewSubclassView(gameObject, PersonType.MafiaKillerBugai);
                     break;
                 case PersonType.MafiaKillerAgility:
-                    //m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
+                    ClassVisualization.ConformNewSubclassView(gameObject, PersonType.MafiaKillerAgility);
+                    break;
+                case PersonType.MafiaKillerIntelect:
+                    ClassVisualization.ConformNewSubclassView(gameObject, PersonType.MafiaKillerIntelect);
                     break;
             }
         }

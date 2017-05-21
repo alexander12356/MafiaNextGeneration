@@ -34,6 +34,27 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
                     }
                     (BaseBehavior as Mafia).SetSubclass(type);
                     break;
+                case PersonType.MafiaKillerBugai:
+                    if (!(BaseBehavior is Mafia))
+                    {
+                        BaseBehavior = gameObject.AddComponent<Mafia>();
+                    }
+                    (BaseBehavior as Mafia).SetSubclass(type);
+                    break;
+                case PersonType.MafiaKillerAgility:
+                    if (!(BaseBehavior is Mafia))
+                    {
+                        BaseBehavior = gameObject.AddComponent<Mafia>();
+                    }
+                    (BaseBehavior as Mafia).SetSubclass(type);
+                    break;
+                case PersonType.MafiaKillerIntelect:
+                    if (!(BaseBehavior is Mafia))
+                    {
+                        BaseBehavior = gameObject.AddComponent<Mafia>();
+                    }
+                    (BaseBehavior as Mafia).SetSubclass(type);
+                    break;
             }
         }
 

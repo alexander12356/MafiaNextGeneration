@@ -113,6 +113,9 @@ namespace MafiaNextGeneration.PersonSystemClasses
         public int MafiaCount = 0;
         public int PolicemanCount = 0;
         public int MafiaKillerCount = 0;
+        public int MafiaKillerBugaiCount = 0;
+        public int MafiaKillerAgilityCount = 0;
+        public int MafiaKillerIntelectCount = 0;
         public List<BuffData> BuffList = new List<BuffData>();
 
         public bool IsGameStarted = false;
@@ -300,6 +303,9 @@ namespace MafiaNextGeneration.PersonSystemClasses
             MafiaCount = GetPersonList(PersonType.Mafia).PersonList.Count;
             PolicemanCount = GetPersonList(PersonType.Policeman).PersonList.Count;
             MafiaKillerCount = GetPersonList(PersonType.MafiaKiller).PersonList.Count;
+            MafiaKillerAgilityCount = GetPersonList(PersonType.MafiaKillerAgility).PersonList.Count;
+            MafiaKillerBugaiCount = GetPersonList(PersonType.MafiaKillerBugai).PersonList.Count;
+            MafiaKillerAgilityCount = GetPersonList(PersonType.MafiaKillerIntelect).PersonList.Count;
         }
 
         private void CheckMafiaArrest()
@@ -415,6 +421,11 @@ namespace MafiaNextGeneration.PersonSystemClasses
                 var buffChance = Random.Range(0.0f, 100.0f);
                 if (PersonBuffChance[i].Chance < buffChance)
                 {
+                    if (GetPersonList(PersonType.Mafia).PersonList.Count == 0)
+                    {
+                        return;
+                    }
+
                     var randomIndex = Random.Range(0, GetPersonList(PersonType.Mafia).PersonList.Count);
                     if (!GetPerson(PersonType.Mafia, randomIndex).IsHaveBuff(PersonBuffChance[i].BuffType))
                     {
@@ -451,7 +462,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
                     var buffData = BuffList[i];
                     buffData.Count++;
                     BuffList[i] = buffData;
-                    break;
+                    return;
                 }
             }
 
