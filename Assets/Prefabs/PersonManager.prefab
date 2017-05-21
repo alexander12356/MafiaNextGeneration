@@ -58,14 +58,25 @@ MonoBehaviour:
   CreatePersonTime: 0.2
   DeadPersonTime: 0.5
   MutationFrequency: 3
-  PolicemanMutationChance: 0
-  MafiaMutationChance: 1
+  PersonMutationChance:
+  - FromId: 0
+    TargetId: 1
+    Chance: 1
+  - FromId: 1
+    TargetId: 2
+    Chance: 0
+  - FromId: 0
+    TargetId: 6
+    Chance: 0
+  - FromId: 2
+    TargetId: 3
+    Chance: 0
   CitizenDeathrate: 0
   MafiaArrestChance: 0
-  MafiaKillerMutationChance: 0
   PolicemanKilledChance: 0
   DiminishingMafia: 0.05
   PersonCount: 0
   CitizenCount: 0
   MafiaCount: 0
   PolicemanCount: 0
+  MafiaKillerCount: 0

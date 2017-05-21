@@ -12,14 +12,14 @@ namespace MafiaNextGeneration.CardManagerClasses.CardClasses
         {
             base.StartEffect();
 
-            PersonManager.Instance.MafiaKillerMutationChance += KillerBornChance;
+            PersonManager.Instance.ChangeMutationChance(PersonType.MafiaKiller, KillerBornChance);
         }
 
         public override void StopEffect()
         {
             base.StopEffect();
 
-            PersonManager.Instance.MafiaKillerMutationChance -= KillerBornChance;
+            PersonManager.Instance.ChangeMutationChance(PersonType.MafiaKiller, -KillerBornChance);
         }
     }
 }

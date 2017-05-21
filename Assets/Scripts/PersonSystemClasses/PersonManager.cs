@@ -19,6 +19,14 @@ namespace MafiaNextGeneration.PersonSystemClasses
         }
     }
 
+    [System.Serializable]
+    public struct PersonMutationChance
+    {
+        public PersonType FromId;
+        public PersonType TargetId;
+        public float Chance;
+    }
+
     public enum PersonType
     {
         Citizen,
@@ -46,16 +54,13 @@ namespace MafiaNextGeneration.PersonSystemClasses
 
         [Header("Mutation")]
         public float MutationFrequency;
-        public float PolicemanMutationChance;
-        public float MafiaMutationChance;
+        public List<PersonMutationChance> PersonMutationChance = new List<PersonMutationChance>();
 
         [Header("Citizen property")]
         public float CitizenDeathrate;
 
         [Header("Mafia property")]
         public float MafiaArrestChance;
-        public float MafiaKillerMutationChance;
-        public float MafiaKillerBugaiMutationChance;
 
         [Header("Policeman property")]
         public float PolicemanKilledChance;
@@ -280,62 +285,34 @@ namespace MafiaNextGeneration.PersonSystemClasses
 
         private void CheckMutations()
         {
-            CheckMafiaMutation();
-            CheckPolicemanMutation();
-
-            CheckMafiaKillerMutation();
-            CheckMafiaKillerBugaiMutation();
-        }
-
-        private void CheckMafiaMutation()
-        {
-            float mafiaChance = Random.Range(0.0f, 100.0f);
-
-            if (mafiaChance < MafiaMutationChance)
+            for (int i = 0; i < PersonMutationChance.Count; i++)
             {
-                var randomIndex = Random.Range(0, GetPersonList(PersonType.Citizen).PersonList.Count);
+                var mutationChance = Random.Range(0, 100.0f);
+                
+                if (mutationChance < PersonMutationChance[i].Chance)
+                {
+                    var fromId = PersonMutationChance[i].FromId;
+                    var targetId = PersonMutationChance[i].TargetId;
+                    var randomIndex = Random.Range(0, GetPersonList(fromId).PersonList.Count);
 
-                GetPersonList(PersonType.Citizen).PersonList[randomIndex].SetBehaviorType("Mafia");
-                AddNewPerson(PersonType.Mafia, GetPerson(PersonType.Citizen, randomIndex));
-                GetPersonList(PersonType.Citizen).PersonList.RemoveAt(randomIndex);
+                    GetPersonList(fromId).PersonList[randomIndex].SetBehaviorType(targetId);
+                    AddNewPerson(targetId, GetPerson(fromId, randomIndex));
+                    GetPersonList(fromId).PersonList.RemoveAt(randomIndex);
+                }
             }
         }
 
-        private void CheckPolicemanMutation()
+        public void ChangeMutationChance(PersonType personType, float value)
         {
-            float policemanChance = Random.Range(0.0f, 100.0f);
-
-            if (policemanChance < PolicemanMutationChance)
+            for (int i = 0; i < PersonMutationChance.Count; i++)
             {
-                var randomIndex = Random.Range(0, GetPersonList(PersonType.Citizen).PersonList.Count);
-
-                GetPersonList(PersonType.Citizen).PersonList[randomIndex].SetBehaviorType("Policeman");
-                AddNewPerson(PersonType.Policeman, GetPerson(PersonType.Citizen, randomIndex));
-                GetPersonList(PersonType.Citizen).PersonList.RemoveAt(randomIndex);
-
-                MafiaArrestChance += DiminishingMafia;
+                if (PersonMutationChance[i].TargetId == personType)
+                {
+                    var mutationChance = PersonMutationChance[i];
+                    mutationChance.Chance += value;
+                    PersonMutationChance[i] = mutationChance;
+                }
             }
-        }
-
-        private void CheckMafiaKillerMutation()
-        {
-            var mutationChance = Random.Range(0.0f, 100.0f);
-
-            if (mutationChance < MafiaKillerMutationChance)
-            {
-                var randomIndex = Random.Range(0, GetPersonList(PersonType.Mafia).PersonList.Count);
-
-                (GetPersonList(PersonType.Mafia).PersonList[randomIndex].BaseBehavior as Mafia).SetSubclass("Killer");
-                AddNewPerson(PersonType.MafiaKiller, GetPerson(PersonType.Mafia, randomIndex));
-                GetPersonList(PersonType.Mafia).PersonList.RemoveAt(randomIndex);
-            }
-        }
-
-        private void CheckMafiaKillerBugaiMutation()
-        {
-            //int index = Random.Range(0, GetPersonList(PersonType.MafiaKillerBugai).PersonList.Count);
-
-            //(GetPersonList(PersonType.MafiaKillerBugai).PersonList[index].BaseBehavior as Mafia).SetCharacteristic("Bugai");
         }
     }
 }

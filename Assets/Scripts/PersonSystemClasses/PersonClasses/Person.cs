@@ -29,5 +29,21 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
                     break;
             }
         }
+
+        public void SetBehaviorType(PersonType type)
+        {
+            switch(type)
+            {
+                case PersonType.Mafia:
+                    BaseBehavior = gameObject.AddComponent<Mafia>();
+                    break;
+                case PersonType.Policeman:
+                    BaseBehavior = gameObject.AddComponent<Policeman>();
+                    break;
+                case PersonType.MafiaKiller:
+                    (BaseBehavior as Mafia).SetSubclass(type);
+                    break;
+            }
+        }
     }
 }

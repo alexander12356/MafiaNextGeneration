@@ -5,8 +5,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
 {
     public class Mafia : BaseBehavior
     {
-        private Vector2 m_MovingTarget;
-        private string m_SubclassId;
+        private PersonType m_SubclassId;
         private string m_CharaceristicId;
 
         protected override void Start()
@@ -34,29 +33,20 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
             throw new NotImplementedException();
         }
 
-        public void SetSubclass(string id)
+        public void SetSubclass(PersonType id)
         {
             m_SubclassId = id;
 
-            // TODO change visualization
-            //Visualization(this, id);
-
             switch (id)
             {
-                case "Killer":
+                case PersonType.MafiaKiller:
                     m_SpriteRenderer.color = new Color(255.0f / 255.0f, 121 / 255.0f, 0 / 255.0f);
                     break;
-            }
-        }
-
-        public void SetCharacteristic(string id)
-        {
-            m_CharaceristicId = id;
-
-            switch (id)
-            {
-                case "Bugai":
+                case PersonType.MafiaKillerBugai:
                     m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
+                    break;
+                case PersonType.MafiaKillerAgility:
+                    //m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
                     break;
             }
         }
