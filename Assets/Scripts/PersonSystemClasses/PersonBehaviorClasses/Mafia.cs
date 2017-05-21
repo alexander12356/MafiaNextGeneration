@@ -6,6 +6,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
     public class Mafia : BaseBehavior
     {
         private PersonType m_SubclassId;
+        private string m_BuffType;
         private string m_CharaceristicId;
 
         protected override void Start()
@@ -49,6 +50,11 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
                     //m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
                     break;
             }
+        }
+
+        public void SetBuff(string buffId)
+        {
+
         }
     }
 }

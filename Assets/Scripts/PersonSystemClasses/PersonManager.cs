@@ -7,6 +7,7 @@ using MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses;
 
 namespace MafiaNextGeneration.PersonSystemClasses
 {
+    [System.Serializable]
     public struct PersonListStruct
     {
         public PersonType Id;
@@ -24,6 +25,13 @@ namespace MafiaNextGeneration.PersonSystemClasses
     {
         public PersonType FromId;
         public PersonType TargetId;
+        public float Chance;
+    }
+
+    [System.Serializable]
+    public struct PersonBuffChance
+    {
+        public string buffId;
         public float Chance;
     }
 
@@ -55,6 +63,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
         [Header("Mutation")]
         public float MutationFrequency;
         public List<PersonMutationChance> PersonMutationChance = new List<PersonMutationChance>();
+        public List<PersonBuffChance> PersonBuffChance = new List<PersonBuffChance>();
 
         [Header("Citizen property")]
         public float CitizenDeathrate;
@@ -65,6 +74,9 @@ namespace MafiaNextGeneration.PersonSystemClasses
         [Header("Policeman property")]
         public float PolicemanKilledChance;
         public float DiminishingMafia;
+
+        [Header("Global property")]
+        public float Invisibility;
 
         [Header("Inforimation")]
         public int PersonCount = 0;
@@ -208,6 +220,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
             if (m_MutationFrequencyTimer > MutationFrequency)
             {
                 CheckMutations();
+                CheckBuffs();
             }
 
             PersonUpdate();
@@ -311,6 +324,33 @@ namespace MafiaNextGeneration.PersonSystemClasses
                     var mutationChance = PersonMutationChance[i];
                     mutationChance.Chance += value;
                     PersonMutationChance[i] = mutationChance;
+                }
+            }
+        }
+
+        private void CheckBuffs()
+        {
+            for (int i = 0; i < PersonBuffChance.Count; i++)
+            {
+                var buffChance = Random.Range(0.0f, 100.0f);
+                if (PersonBuffChance[i].Chance < buffChance)
+                {
+                    var randomIndex = Random.Range(0, GetPersonList(PersonType.Mafia).PersonList.Count);
+
+                    (GetPersonList(PersonType.Mafia).PersonList[randomIndex].BaseBehavior as Mafia).SetBuff(PersonBuffChance[i].buffId);
+                }
+            }
+        }
+
+        public void ChangeBuffChance(string buffId, float value)
+        {
+            for (int i = 0; i < PersonBuffChance.Count; i++)
+            {
+                if (PersonBuffChance[i].buffId == buffId)
+                {
+                    var personBuff = PersonBuffChance[i];
+                    personBuff.Chance += value;
+                    PersonBuffChance[i] = personBuff;
                 }
             }
         }

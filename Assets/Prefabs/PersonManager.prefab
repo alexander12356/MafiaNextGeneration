@@ -71,10 +71,12 @@ MonoBehaviour:
   - FromId: 2
     TargetId: 3
     Chance: 0
+  PersonBuffChance: []
   CitizenDeathrate: 0
   MafiaArrestChance: 0
   PolicemanKilledChance: 0
   DiminishingMafia: 0.05
+  Invisibility: 0
   PersonCount: 0
   CitizenCount: 0
   MafiaCount: 0
