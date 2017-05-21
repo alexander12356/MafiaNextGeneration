@@ -80,6 +80,7 @@ public class UIController : MonoBehaviour {
 				handCards [i].rectTransform.localEulerAngles = rotations [handCards [i].HandIndexPosition];
 			}
 		}
+		handCards.Remove (deletedCard);
 		SpawnCards (CardBase.instance.GetRandomIds (1), true);
 	}
 
