@@ -29,7 +29,7 @@ namespace Cards
 
 		void Start(){
 			myFont = Resources.Load<Font> ("Font/Slabo27px-Regular");
-			//startParent = transform;
+			startParent = transform;
 			cardBase = CardBase.instance;
 			Image face = new GameObject ("face").AddComponent<Image> ();
 			face.rectTransform.SetParent (rectTransform, false);
@@ -83,11 +83,15 @@ namespace Cards
 		}
 
 		public void OnEndDrag(PointerEventData eventData){
-			if (startParent == GetComponentInParent<Transform> ()) {
-				UIController.instance.DiscardSelectedCard (rectTransform, HandIndexPosition, true);
+			if (startParent == transform) {
+				UIController.instance.DiscardSelectedCard (rectTransform, HandIndexPosition,true);
 			} else {
+				
+			}
+			if (afterActive) {
 				rectTransform.localPosition = Vector3.zero;
 				rectTransform.localScale = Vector3.one;
+				rectTransform.eulerAngles = Vector3.zero;
 			}
 			GetComponent<CanvasGroup> ().blocksRaycasts = true;
 			UIController.instance.selectedCard = null;

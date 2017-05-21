@@ -31,27 +31,6 @@ public class ActiveZone : MonoBehaviour, IDropHandler {
 		}
 	}
 
-	public void OnPointerDown(PointerEventData evetnData){
-		/*if (uiController.selectedCard != null) {
-			Disapear ();
-
-			Card crd = uiController.selectedCard.GetComponent<Card> ();
-			crd.cantSelected = true;
-			uiController.handCards.Remove (crd);
-
-			if (card != null) {
-				nextCard = uiController.selectedCard;
-				StartRemoveCard ();
-			} else {
-				card = uiController.selectedCard;
-			}
-			uiController.DecreaseCardHandIndex (crd);
-			uiController.selectedCard = null;
-		} else {
-			StartRemoveCard ();
-		}*/
-	}
-
 	void Disapear(){
 		uiController.selectedCard.SetParent (rectTransform, false);
 		uiController.selectedCard.localPosition = Vector2.zero;
