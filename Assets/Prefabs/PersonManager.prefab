@@ -98,7 +98,7 @@ MonoBehaviour:
     Chance: 0
   - FromId: -3
     TargetId: -2
-    Chance: 0
+    Chance: 0.2
   - FromId: 4
     TargetId: 5
     Chance: 0

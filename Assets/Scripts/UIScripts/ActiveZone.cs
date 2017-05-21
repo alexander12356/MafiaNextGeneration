@@ -21,6 +21,7 @@ public class ActiveZone : MonoBehaviour, IDropHandler {
 		for (int i = 0; i < CardBase.instance.cardCostList.Count; i++) {
 			if (CardBase.instance.cardCostList [i].id == crd.CardId) {
 				if (CardBase.instance.cardCostList [i].cost < MoneyManager.Instance.CurrentMoney) {
+                    MoneyManager.Instance.CurrentMoney -= CardBase.instance.cardCostList[i].cost;
 					if (uiController.selectedCard != null) {
 						if (card != null && card.GetComponent<Card> ().afterActive) {
 							uiController.CardDiscard (card.GetComponent<Card> ().CardId);

@@ -52,5 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMoney: 500
-  MoneyIncreaseFrequency: 0.5
-  MoneyIncreaseValue: 0.01
+  MoneyIncreaseFrequency: 1.5
+  MoneyIncreaseValue: 0.001
