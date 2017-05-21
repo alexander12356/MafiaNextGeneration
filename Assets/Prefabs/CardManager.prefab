@@ -82,3 +82,6 @@ MonoBehaviour:
   - CardID: Spaceship
     CardPrefab: {fileID: 114770440522932824, guid: a1f0cdbbec614554b89100b487d66977,
       type: 2}
+  - CardID: Oratory
+    CardPrefab: {fileID: 114200173440531032, guid: db9102591c38cba449e15cd56ad113ea,
+      type: 2}
