@@ -21,6 +21,12 @@ namespace MafiaNextGeneration.CardManagerClasses
         [SerializeField]
         public List<CardStruct> CardPrefabList;
 
+        public void Start()
+        {
+            UIController.instance.OnCardAdded += UseCard;
+            UIController.instance.OnCardDiscarded += UnuseCard;
+        }
+
         public void UseCard(string cardId)
         {
             for (int i = 0; i < CardPrefabList.Count; i++)
@@ -36,6 +42,11 @@ namespace MafiaNextGeneration.CardManagerClasses
 
         public void UnuseCard(string cardId)
         {
+            if (!CardsList.ContainsKey(cardId))
+            {
+                return;
+            }
+
             Destroy(CardsList[cardId].gameObject);
             CardsList[cardId].StopEffect();
             CardsList.Remove(cardId);

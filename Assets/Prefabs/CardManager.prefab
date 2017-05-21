@@ -67,3 +67,18 @@ MonoBehaviour:
   - CardID: KillerCardIntelect
     CardPrefab: {fileID: 114027433527119848, guid: 53e5cadb008800749bd634c986cedd6a,
       type: 2}
+  - CardID: Invisibilty
+    CardPrefab: {fileID: 114832129720884312, guid: 351c79017885ea34680afc61114ac7b4,
+      type: 2}
+  - CardID: TrueSight
+    CardPrefab: {fileID: 114746145032961830, guid: 8f35e503f05436e44b1353b28fc53cbd,
+      type: 2}
+  - CardID: Legalbusiness
+    CardPrefab: {fileID: 114935517251534854, guid: ad36e834642571d49b3fd35eaf1d9322,
+      type: 2}
+  - CardID: Hospital
+    CardPrefab: {fileID: 114407090010253258, guid: b183917b76c31be4c860d8343e99ae9d,
+      type: 2}
+  - CardID: Spaceship
+    CardPrefab: {fileID: 114770440522932824, guid: a1f0cdbbec614554b89100b487d66977,
+      type: 2}
