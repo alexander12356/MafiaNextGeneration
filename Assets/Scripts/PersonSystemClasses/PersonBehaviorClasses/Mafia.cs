@@ -7,6 +7,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
     {
         private Vector2 m_MovingTarget;
         private string m_SubclassId;
+        private string m_CharaceristicId;
 
         protected override void Start()
         {
@@ -40,7 +41,24 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
             // TODO change visualization
             //Visualization(this, id);
 
-            m_SpriteRenderer.color = new Color(255.0f / 255.0f, 121 / 255.0f, 0 / 255.0f);
+            switch (id)
+            {
+                case "Killer":
+                    m_SpriteRenderer.color = new Color(255.0f / 255.0f, 121 / 255.0f, 0 / 255.0f);
+                    break;
+            }
+        }
+
+        public void SetCharacteristic(string id)
+        {
+            m_CharaceristicId = id;
+
+            switch (id)
+            {
+                case "Bugai":
+                    m_SpriteRenderer.color = new Color(255.0f / 255.0f, 255 / 255.0f, 0 / 255.0f);
+                    break;
+            }
         }
     }
 }

@@ -13,13 +13,6 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
         public void UpdatePerson()
         {
             BaseBehavior.UpdateBehavior();
-
-            CheckDistance();
-        }
-
-        private void CheckDistance()
-        {
-            var personList = PersonManager.Instance.PersonList;
         }
 
         public void SetBehaviorType(string behaviorType)
