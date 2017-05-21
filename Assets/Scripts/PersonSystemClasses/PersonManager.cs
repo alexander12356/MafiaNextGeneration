@@ -410,6 +410,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
                     var mutationChance = PersonMutationChance[i];
                     mutationChance.Chance += value;
                     PersonMutationChance[i] = mutationChance;
+                    return;
                 }
             }
         }

@@ -72,9 +72,13 @@ MonoBehaviour:
   - FromId: 4
     TargetId: 5
     Chance: 0
-  PersonBuffChance:
-  - BuffType: 1
-    Chance: 0.25
+  - FromId: 4
+    TargetId: -1
+    Chance: 0
+  - FromId: 4
+    TargetId: 2
+    Chance: 0
+  PersonBuffChance: []
   CitizenDeathrate: 0
   MafiaArrestChance: 0
   PolicemanKilledChance: 0

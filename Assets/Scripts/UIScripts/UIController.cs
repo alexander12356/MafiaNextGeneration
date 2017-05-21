@@ -49,8 +49,13 @@ public class UIController : MonoBehaviour {
 	}
 
 	void Start(){
-		SpawnCards (Cards.CardBase.instance.GetRandomIds (6));
+		//SpawnCards (Cards.CardBase.instance.GetRandomIds (6));
 	}
+
+    public void SpawnCards()
+    {
+        SpawnCards(Cards.CardBase.instance.GetRandomIds(6));
+    }
 
 
 	void Update(){
