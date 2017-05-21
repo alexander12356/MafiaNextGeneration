@@ -669,7 +669,6 @@ MonoBehaviour:
   - 
   - 
   - 
-  - 
   cardCostList:
   - cost: 0
     id: 
@@ -711,51 +710,53 @@ MonoBehaviour:
     id: 
   - cost: 0
     id: 
-  - cost: 0
-    id: 
   descriptionList:
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
-  - id: 
-    description: 
+  - id: Legalbusiness
+    description: You open a new business, get passive income and open new jobs.
+  - id: Hospital
+    description: Gift in the hospital will reduce the death rate.
+  - id: Spaceship
+    description: Improve the spaceship to carry more people.
+  - id: KillerCard
+    description: Your main force for the war, he kills the mafia of another clan.
+  - id: BugaiCard
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: AgilityCard
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: Tod
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: Invisibility
+    description: Mafia from another clan may not see your mafia member.
+  - id: TrueSight
+    description: Can see the mafia with the ability to stealth.
+  - id: Spy
+    description: Mafia with this ability, being on another planet sends you a report
+      on the enemy.
+  - id: Bountyhunter
+    description: Gets money for killing an enemy mafia.
+  - id: Thief
+    description: Steals money from you, if he on another planet steals from the enemy
+      and gives money to you.
+  - id: Robbery
+    description: Brings money but gives "theft" skills that steal money from you.
+  - id: Pimp
+    description: Profits but increase the death rate.
+  - id: Reket
+    description: Brings money but increases the appearance of policemen.
+  - id: Dealers
+    description: Bring money but increase the death rate of members of the mafia.
+  - id: Oratory
+    description: Increases the number of your mafia.
+  - id: HuntPoliceman
+    description: Your mafia killing policemen, beware of increasing the death rate.
+  - id: Insider
+    description: Your mafia is less likely to come across to the police.
+  - id: Werewolf
+    description: Member of your mafia to become a policeman, he does not catch members
+      of your mafia.
 --- !u!4 &1296391583
 Transform:
   m_ObjectHideFlags: 0
