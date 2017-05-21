@@ -10,13 +10,6 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
     {
         public BaseBehavior BaseBehavior;
 
-        private SpriteRenderer m_SpriteRenderer;
-
-        public void Awake()
-        {
-            m_SpriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
         public void UpdatePerson()
         {
             BaseBehavior.UpdateBehavior();
@@ -36,11 +29,9 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonClasses
             switch (behaviorType)
             {
                 case "Mafia":
-                    m_SpriteRenderer.color = Color.red;
                     BaseBehavior = gameObject.AddComponent<Mafia>();
                     break;
                 case "Policeman":
-                    m_SpriteRenderer.color = Color.blue;
                     BaseBehavior = gameObject.AddComponent<Policeman>();
                     break;
             }

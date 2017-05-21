@@ -11,6 +11,7 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
         {
             base.Start();
             BehaviorType = "Policeman";
+            m_SpriteRenderer.color = Color.blue;
         }
 
         public override void UpdateBehavior()

@@ -18,7 +18,14 @@ namespace MafiaNextGeneration.PersonSystemClasses.PersonBehaviorClasses
 
         private Vector2 m_MovingTarget;
 
+        protected SpriteRenderer m_SpriteRenderer;
+
         public abstract void UpdateBehavior();
+
+        public void Awake()
+        {
+            m_SpriteRenderer = GetComponent<SpriteRenderer>();
+        }
 
         protected virtual void Start()
         {
