@@ -44,7 +44,7 @@ public class UIController : MonoBehaviour {
 			instance = this;
 		}
 		cardPrefab = Resources.Load<GameObject> ("Prefabs/Card");
-		cardHolder = GameObject.Find ("Content").GetComponent<RectTransform> ();
+		cardHolder = GameObject.Find ("ContentCard").GetComponent<RectTransform> ();
 		trashHolder = GameObject.Find ("Trash").GetComponent<RectTransform> ();
 	}
 
