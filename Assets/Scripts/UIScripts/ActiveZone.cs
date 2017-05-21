@@ -8,26 +8,25 @@ public class ActiveZone : MonoBehaviour, IDropHandler {
 	UIController uiController;
 	RectTransform rectTransform;
 	RectTransform card;
-	[SerializeField]
-	RectTransform trash;
 	RectTransform nextCard;
 
 	void Start(){
 		rectTransform = GetComponent<RectTransform> ();
 		uiController = UIController.instance;
-		trash = uiController.trashHolder;
 		uiController.ActiveZonesPositions.Add (rectTransform.position);
 	}
 
 	public void OnDrop(PointerEventData eventData){
 		if(uiController.selectedCard != null){
-			if (card != null) {
+			Card crd = uiController.selectedCard.GetComponent<Card> ();
+			if (card != null && card.GetComponent<Card>().afterActive) {
+				uiController.CardDiscard (card.GetComponent<Card> ().CardId);
 				Destroy (card.gameObject);
 			}
 			uiController.selectedCard.SetParent (transform);
 			card = uiController.selectedCard;
-			Card crd = uiController.selectedCard.GetComponent<Card> ();
 			crd.afterActive = true;
+			uiController.CardAdd (crd.CardId);
 			uiController.DecreaseCardHandIndex (crd);
 		}
 	}
@@ -60,25 +59,5 @@ public class ActiveZone : MonoBehaviour, IDropHandler {
 		uiController.selectedCard.localEulerAngles = Vector3.zero;
 		//uiController.AfterSelectCard (true);
 		uiController.selectedCard.GetComponent<Image> ().raycastTarget = false;
-		uiController.selectedCard.GetComponent<Button> ().onClick.AddListener (() => StartRemoveCard ());
-	}
-
-	void StartRemoveCard(){
-		StartCoroutine (MoveToTrash ());
-	}
-
-	IEnumerator MoveToTrash(){
-		float t = 0;
-		while (t < 5) {
-			t += Time.deltaTime;
-			card.position = Vector3.MoveTowards (card.position, trash.position, Time.deltaTime * 100);
-			if ((card.position - trash.position).magnitude < 1) {
-				Destroy (card.gameObject);
-				card = nextCard;
-				nextCard = null;
-				yield break;
-			}
-			yield return null;
-		}
 	}
 }

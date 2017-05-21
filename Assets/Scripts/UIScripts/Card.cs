@@ -63,9 +63,9 @@ namespace Cards
 			description.rectTransform.SetParent (rectTransform, false);
 			description.fontSize = 40;
 			description.alignment = TextAnchor.MiddleCenter;
-			description.rectTransform.sizeDelta = new Vector2 (140, 150);
-			description.rectTransform.localPosition = new Vector3 (0, -50, 0);
-			description.color = Color.black;
+			description.rectTransform.sizeDelta = new Vector2 (120, 70);
+			description.rectTransform.localPosition = new Vector3 (0, -78, 0);
+			description.color = Color.white;
 			description.resizeTextForBestFit = true;
 			description.alignByGeometry = true;
 			description.resizeTextMaxSize = 100;

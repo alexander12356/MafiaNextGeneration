@@ -24,6 +24,7 @@ public class Trash : MonoBehaviour,IDropHandler {
 	}
 
 	void TrashObject(){
+		uiController.CardDiscard (transform.GetChild(0).GetComponent<Cards.Card>().CardId);
 		Destroy (transform.GetChild (0).gameObject);
 	}
 }

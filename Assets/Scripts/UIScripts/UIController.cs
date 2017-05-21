@@ -57,21 +57,8 @@ public class UIController : MonoBehaviour {
 		if (selectedCard != null) {
 			selectedCard.SetAsLastSibling ();
 			selectedCard.localScale = Vector3.one * 1.2f;
-			//AfterSelectCard (false);
 		}
 	}
-
-	//public void AfterSelectCard(bool isActive){
-	//	for (int i = 0; i < handCards.Count; i++) {
-	//		if (selectedCard != null) {
-	//			if (handCards [i] != selectedCard.GetComponent<Card> ()) {
-	//				handCards [i].GetComponent<Button> ().interactable = isActive;
-	//			}
-	//		} else {
-	//			handCards [i].GetComponent<Button> ().interactable = isActive;
-	//		}
-	//	}
-	//}
 
 	public void DiscardSelectedCard(RectTransform discardCard, int index, bool isAfterDrag = false){
 		if (isAfterDrag) {
@@ -82,12 +69,11 @@ public class UIController : MonoBehaviour {
 		discardCard.SetSiblingIndex (index);
 		discardCard.localScale = Vector3.one;
 		selectedCard = null;
-		//AfterSelectCard (true);
 	}
 
 	public void DecreaseCardHandIndex(Card deletedCard){
 		for (int i = 0; i < handCards.Count; i++) {
-			if (handCards [i].HandIndexPosition > deletedCard.HandIndexPosition) {
+			if (handCards [i].HandIndexPosition > deletedCard.HandIndexPosition && handCards[i] != null) {
 				handCards [i].HandIndexPosition--;
 				handCards [i].rectTransform.SetSiblingIndex (handCards [i].HandIndexPosition);
 				handCards [i].rectTransform.localPosition = cardPositions [handCards [i].HandIndexPosition];
@@ -108,7 +94,7 @@ public class UIController : MonoBehaviour {
 			if (card != null) {
 				handCards.Add (card);
 				card.HandIndexPosition = 5;
-				card.CardId = ids [5];
+				card.CardId = ids [ids.Count - 1];
 			}
 			return;
 		}
