@@ -8,7 +8,11 @@ using MafiaNextGeneration.PersonSystemClasses;
 public class MoneyManager : MonoBehaviour
 {
     private static MoneyManager m_Instance;
-    public static MoneyManager Instance;
+	public static MoneyManager Instance{
+		get{ 
+			return m_Instance;
+		}
+	}
 
     public int CurrentMoney = 500;
     public float MoneyIncreaseFrequency = 5.0f;

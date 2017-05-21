@@ -34,7 +34,7 @@ public class UIController : MonoBehaviour {
 	public List<Card> handCards = new List<Card>();
 	public GameObject cardPrefab;
 	public RectTransform cardHolder;
-
+	public Text currentMoney;
 	public RectTransform trashHolder;
 
 	public List<Vector3> ActiveZonesPositions = new List<Vector3> ();
@@ -43,6 +43,7 @@ public class UIController : MonoBehaviour {
 		if (instance == null) {
 			instance = this;
 		}
+		currentMoney = GameObject.Find ("CurrentMoney (1)").GetComponent<Text>();
 		cardPrefab = Resources.Load<GameObject> ("Prefabs/Card");
 		cardHolder = GameObject.Find ("ContentCard").GetComponent<RectTransform> ();
 		trashHolder = GameObject.Find ("Trash").GetComponent<RectTransform> ();
@@ -50,8 +51,17 @@ public class UIController : MonoBehaviour {
 
 	void Start(){
 		//SpawnCards (Cards.CardBase.instance.GetRandomIds (6));
+		StartCoroutine(CheckMoney());
 	}
 
+	IEnumerator CheckMoney(){
+		while(true)
+		{
+			if (currentMoney != null)
+				currentMoney.text = MoneyManager.Instance.CurrentMoney + "";
+			yield return new WaitForEndOfFrame();
+		}
+	}
     public void SpawnCards()
     {
         SpawnCards(Cards.CardBase.instance.GetRandomIds(6));

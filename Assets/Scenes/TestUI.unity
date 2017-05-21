@@ -142,6 +142,111 @@ RectTransform:
   m_AnchoredPosition: {x: 100, y: 0}
   m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!224 &128937391 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+    type: 2}
+  m_PrefabInternal: {fileID: 226552771}
+--- !u!1001 &226552771
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2122827979}
+    m_Modifications:
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -555
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224244874528399728, guid: 985efded2816041818b3a34235337d3c,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 985efded2816041818b3a34235337d3c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &237575497
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00014062598}
+  m_AnchoredPosition: {x: 0, y: 154.53648}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &363183048
@@ -438,6 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 497367170}
   - component: {fileID: 497367169}
+  - component: {fileID: 497367171}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -474,6 +580,7 @@ MonoBehaviour:
   handCards: []
   cardPrefab: {fileID: 0}
   cardHolder: {fileID: 0}
+  currentMoney: {fileID: 0}
   trashHolder: {fileID: 0}
   ActiveZonesPositions: []
 --- !u!4 &497367170
@@ -489,6 +596,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &497367171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 497367168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e55d4e9c54fda904ab2bfe6cba516a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentMoney: 500
+  MoneyIncreaseFrequency: 5
+  MoneyIncreaseValue: 1
 --- !u!1 &687233594
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,46 +1111,46 @@ MonoBehaviour:
   - Insider
   - Werewolf
   cardCostList:
-  - cost: 133
-    id: Legalbusiness
-  - cost: 150
-    id: Hospital
-  - cost: 100
-    id: Spaceship
-  - cost: 14
-    id: KillerCard
-  - cost: 28
-    id: BugaiCard
-  - cost: 82
-    id: AgilityCard
-  - cost: 43
-    id: Tod
-  - cost: 67
-    id: Invisibility
-  - cost: 33
-    id: TrueSight
-  - cost: 43
-    id: Spy
-  - cost: 56
-    id: Bountyhunter
-  - cost: 10
-    id: Thief
-  - cost: 13
-    id: Robbery
-  - cost: 21
-    id: Pimp
-  - cost: 52
-    id: Reket
-  - cost: 221
-    id: Dealers
-  - cost: 23
-    id: Oratory
-  - cost: 513
-    id: HuntPoliceman
-  - cost: 20
-    id: Insider
-  - cost: 15
-    id: Werewolf
+  - id: Legalbusiness
+    cost: 133
+  - id: Hospital
+    cost: 150
+  - id: Spaceship
+    cost: 100
+  - id: KillerCard
+    cost: 14
+  - id: BugaiCard
+    cost: 28
+  - id: AgilityCard
+    cost: 82
+  - id: Tod
+    cost: 43
+  - id: Invisibility
+    cost: 67
+  - id: TrueSight
+    cost: 33
+  - id: Spy
+    cost: 43
+  - id: Bountyhunter
+    cost: 56
+  - id: Thief
+    cost: 10
+  - id: Robbery
+    cost: 13
+  - id: Pimp
+    cost: 21
+  - id: Reket
+    cost: 52
+  - id: Dealers
+    cost: 221
+  - id: Oratory
+    cost: 23
+  - id: HuntPoliceman
+    cost: 513
+  - id: Insider
+    cost: 20
+  - id: Werewolf
+    cost: 15
   descriptionList:
   - id: Legalbusiness
     description: You open a new business, get passive income and open new jobs.
@@ -1166,7 +1287,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 408157610}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.71770495
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1287,6 +1408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc5da367aa514aa396232e38d31bacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
+  textPrefab: {fileID: 0}
+  holderContent: {fileID: 0}
 --- !u!1 &1525666389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +2113,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2122827979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1999,7 +2123,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 128937391}
   m_Father: {fileID: 2063331935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2020,7 +2145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0, b: 0.5, a: 0.32547623}
+  m_Color: {r: 0.5, g: 0, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

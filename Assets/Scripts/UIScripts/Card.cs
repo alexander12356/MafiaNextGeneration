@@ -12,7 +12,7 @@ namespace Cards
 		public string CardId;
 		public int HandIndexPosition;
 		public bool afterActive;
-
+		public int Cost;
 		public RectTransform rectTransform;
 		Font myFont;
 
@@ -48,6 +48,7 @@ namespace Cards
 			for (int i = 0; i < cardBase.cardCostList.Count; i++) {
 				if (cardBase.cardCostList [i].id == CardId) {
 					cost.text = cardBase.cardCostList [i].cost.ToString();
+					Cost = int.Parse (cost.text);
 				}
 			}
 			cost.color = Color.white;

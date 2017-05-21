@@ -26,8 +26,8 @@ namespace Cards{
 		public List<string> CardList = new List<string>();
 		[System.Serializable]
 		public struct CardCostData {
-			public int cost;
 			public string id;
+			public int cost;
 		}
 		public List<CardCostData> cardCostList = new List<CardCostData> ();
 

@@ -17,18 +17,25 @@ public class ActiveZone : MonoBehaviour, IDropHandler {
 	}
 
 	public void OnDrop(PointerEventData eventData){
-		if(uiController.selectedCard != null){
-			Card crd = uiController.selectedCard.GetComponent<Card> ();
-			if (card != null && card.GetComponent<Card>().afterActive) {
-				uiController.CardDiscard (card.GetComponent<Card> ().CardId);
-				Destroy (card.gameObject);
+		Card crd = uiController.selectedCard.GetComponent<Card> ();
+		for (int i = 0; i < CardBase.instance.cardCostList.Count; i++) {
+			if (CardBase.instance.cardCostList [i].id == crd.CardId) {
+				if (CardBase.instance.cardCostList [i].cost < MoneyManager.Instance.CurrentMoney) {
+					if (uiController.selectedCard != null) {
+						if (card != null && card.GetComponent<Card> ().afterActive) {
+							uiController.CardDiscard (card.GetComponent<Card> ().CardId);
+							Destroy (card.gameObject);
+						}
+						uiController.selectedCard.SetParent (transform);
+						card = uiController.selectedCard;
+						crd.afterActive = true;
+						uiController.CardAdd (crd.CardId);
+						uiController.DecreaseCardHandIndex (crd);
+					}
+				}
 			}
-			uiController.selectedCard.SetParent (transform);
-			card = uiController.selectedCard;
-			crd.afterActive = true;
-			uiController.CardAdd (crd.CardId);
-			uiController.DecreaseCardHandIndex (crd);
 		}
+			
 	}
 
 	void Disapear(){
