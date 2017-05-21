@@ -18,8 +18,7 @@ namespace Cards{
 
 		public List<string> GetRandomIds(int count){
 			for (int i = 0; i < count; i++) {
-				//returnIds.Add(Random.Range (0, 31).ToString ());
-				returnIds.Add(CardList [Random.Range(0, CardList.Count)]);
+				returnIds.Add (CardList [Random.Range (0, CardList.Count - 1)]);
 			}
 			return returnIds;
 		}
