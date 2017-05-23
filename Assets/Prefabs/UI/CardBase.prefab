@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1993530892593502}
+  m_IsPrefabParent: 1
+--- !u!1 &1993530892593502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4526516528447784}
+  - component: {fileID: 114974482504583256}
+  m_Layer: 0
+  m_Name: CardBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4526516528447784
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993530892593502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114974482504583256
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993530892593502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e2149fa34d5c47d2a3e8dc6889d893d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CardList:
+  - Legalbusiness
+  - Hospital
+  - Spaceship
+  - KillerCard
+  - KillerCardBugai
+  - KillerCardAgility
+  - KillerCardIntelect
+  - Invisibility
+  - TrueSight
+  - Spy
+  - BountyHunter
+  - Thief
+  - Robbery
+  - Pimp
+  - Reket
+  - Dealers
+  - Oratory
+  - HuntPoliceman
+  - Insider
+  - Werewolf
+  cardCostList:
+  - id: Legalbusiness
+    cost: 133
+  - id: Hospital
+    cost: 150
+  - id: Spaceship
+    cost: 100
+  - id: KillerCard
+    cost: 14
+  - id: KillerCardBugai
+    cost: 28
+  - id: KillerCardAgility
+    cost: 82
+  - id: KillerCardIntelect
+    cost: 43
+  - id: Invisibility
+    cost: 67
+  - id: TrueSight
+    cost: 33
+  - id: Spy
+    cost: 43
+  - id: Bountyhunter
+    cost: 56
+  - id: Thief
+    cost: 10
+  - id: Robbery
+    cost: 13
+  - id: Pimp
+    cost: 21
+  - id: Reket
+    cost: 52
+  - id: Dealers
+    cost: 221
+  - id: Oratory
+    cost: 23
+  - id: HuntPoliceman
+    cost: 513
+  - id: Insider
+    cost: 20
+  - id: Werewolf
+    cost: 15
+  descriptionList:
+  - id: Legalbusiness
+    description: You open a new business, get passive income and open new jobs.
+  - id: Hospital
+    description: Gift in the hospital will reduce the death rate.
+  - id: Spaceship
+    description: Improve the spaceship to carry more people.
+  - id: KillerCard
+    description: Your main force for the war, he kills the mafia of another clan.
+  - id: KillerCardBugai
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: KillerCardAgility
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: KillerCardIntelect
+    description: 'Becomes only your mafia with the ability to "Killer", probability
+      of kill:'
+  - id: Invisibility
+    description: Mafia from another clan may not see your mafia member.
+  - id: TrueSight
+    description: Can see the mafia with the ability to stealth.
+  - id: Spy
+    description: Mafia with this ability, being on another planet sends you a report
+      on the enemy.
+  - id: Bountyhunter
+    description: Gets money for killing an enemy mafia.
+  - id: Thief
+    description: Steals money from you, if he on another planet steals from the enemy
+      and gives money to you.
+  - id: Robbery
+    description: Brings money but gives "theft" skills that steal money from you.
+  - id: Pimp
+    description: Profits but increase the death rate.
+  - id: Reket
+    description: Brings money but increases the appearance of policemen.
+  - id: Dealers
+    description: Bring money but increase the death rate of members of the mafia.
+  - id: Oratory
+    description: Increases the number of your mafia.
+  - id: HuntPoliceman
+    description: Your mafia killing policemen, beware of increasing the death rate.
+  - id: Insider
+    description: Your mafia is less likely to come across to the police.
+  - id: Werewolf
+    description: Member of your mafia to become a policeman, he does not catch members
+      of your mafia.
