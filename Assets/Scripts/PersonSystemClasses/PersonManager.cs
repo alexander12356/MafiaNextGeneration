@@ -68,7 +68,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
     public enum BuffType
     {
         Invisibility = 1,
-        Robber = 6,
+        Robbery = 6,
         Spy = 7,
         TrueSight = 8,
         BountyHunter = 9
@@ -99,6 +99,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
 
         [Header("Mafia property")]
         public float MafiaArrestChance;
+        public float MafiaDeathRate;
 
         [Header("Policeman property")]
         public float PolicemanKilledChance;
@@ -107,7 +108,7 @@ namespace MafiaNextGeneration.PersonSystemClasses
         [Header("Global property")]
         public float Invisibility;
 
-        [Header("Inforimation")]
+        [Header("Information")]
         public int PersonCount = 0;
         public int CitizenCount = 0;
         public int MafiaCount = 0;
@@ -296,6 +297,8 @@ namespace MafiaNextGeneration.PersonSystemClasses
                 CheckBuffs();
             }
 
+            UpdateMafiaDeathRate();
+
             PersonUpdate();
 
             PersonCount = GetPersonList(PersonType.Citizen).PersonList.Count + GetPersonList(PersonType.Mafia).PersonList.Count + GetPersonList(PersonType.Policeman).PersonList.Count + GetPersonList(PersonType.MafiaKiller).PersonList.Count;
@@ -306,6 +309,52 @@ namespace MafiaNextGeneration.PersonSystemClasses
             MafiaKillerAgilityCount = GetPersonList(PersonType.MafiaKillerAgility).PersonList.Count;
             MafiaKillerBugaiCount = GetPersonList(PersonType.MafiaKillerBugai).PersonList.Count;
             MafiaKillerAgilityCount = GetPersonList(PersonType.MafiaKillerIntelect).PersonList.Count;
+        }
+
+        private void UpdateMafiaDeathRate()
+        {
+            float deathChance = Random.Range(0.0f, 100.0f);
+            if (deathChance > MafiaDeathRate)
+            {
+                return;
+            }
+
+            int TotalMafia = GetPersonList(PersonType.Mafia).PersonList.Count + GetPersonList(PersonType.MafiaKiller).PersonList.Count + GetPersonList(PersonType.MafiaKillerAgility).PersonList.Count + GetPersonList(PersonType.MafiaKillerBugai).PersonList.Count + GetPersonList(PersonType.MafiaKillerIntelect).PersonList.Count;
+
+            List<float> chances = new List<float>();
+            chances[0] = GetPersonList(PersonType.Mafia).PersonList.Count / TotalMafia * 100.0f;
+            chances[1] = GetPersonList(PersonType.MafiaKiller).PersonList.Count / TotalMafia * 100.0f;
+            chances[2] = GetPersonList(PersonType.MafiaKillerAgility).PersonList.Count / TotalMafia * 100.0f;
+            chances[3] = GetPersonList(PersonType.MafiaKillerBugai).PersonList.Count / TotalMafia * 100.0f;
+            chances[4] = GetPersonList(PersonType.MafiaKillerIntelect).PersonList.Count / TotalMafia * 100.0f;
+            chances.Sort();
+
+            float listSelectChance = Random.Range(0.0f, 100.0f);
+
+            for (int i = 0; i < chances.Count; i++)
+            {
+                if (deathChance < chances[i])
+                {
+                    switch(i)
+                    {
+                        case 0:
+                            DeadFromList(GetPersonList(PersonType.Mafia).PersonList);
+                            break;
+                        case 1:
+                            DeadFromList(GetPersonList(PersonType.MafiaKiller).PersonList);
+                            break;
+                        case 2:
+                            DeadFromList(GetPersonList(PersonType.MafiaKillerAgility).PersonList);
+                            break;
+                        case 3:
+                            DeadFromList(GetPersonList(PersonType.MafiaKillerBugai).PersonList);
+                            break;
+                        case 4:
+                            DeadFromList(GetPersonList(PersonType.MafiaKillerIntelect).PersonList);
+                            break;
+                    }
+                }
+            }
         }
 
         private void CheckMafiaArrest()
@@ -343,6 +392,14 @@ namespace MafiaNextGeneration.PersonSystemClasses
                     indexForDeath -= m_PersonList[i].PersonList.Count - 1;
                 }
             }
+        }
+
+        private void DeadFromList(List<Person> personList)
+        {
+            int index = Random.Range(0, personList.Count);
+
+            Destroy(personList[index].gameObject);
+            personList.RemoveAt(index);
         }
 
         private void RemoveFromList(List<Person> personList, int deathIndex)

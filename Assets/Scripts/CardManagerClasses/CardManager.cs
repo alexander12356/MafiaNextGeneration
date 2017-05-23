@@ -15,11 +15,26 @@ namespace MafiaNextGeneration.CardManagerClasses
 
     public class CardManager : MonoBehaviour
     {
+        private static CardManager m_Instance;
+
         public Dictionary<string, BaseCard> CardsList = new Dictionary<string, BaseCard>();
 
         [Header("Card prefabs")]
         [SerializeField]
         public List<CardStruct> CardPrefabList;
+
+        public static CardManager Instance
+        {
+            get
+            {
+                return m_Instance;
+            }
+        }
+
+        public void Awake()
+        {
+            m_Instance = this;
+        }
 
         public void Start()
         {
@@ -52,28 +67,14 @@ namespace MafiaNextGeneration.CardManagerClasses
             CardsList.Remove(cardId);
         }
 
-        [ContextMenu("Use killer card")]
-        private void UseKillCard()
+        public List<string> GetRandomCards(int count)
         {
-            UseCard("KillerCard");
-        }
-
-        [ContextMenu("Unuse killer card")]
-        private void UnuseKillCard()
-        {
-            UnuseCard("KillerCard");
-        }
-
-        [ContextMenu("Use Invisibility card")]
-        private void UseInvisibilityCard()
-        {
-            UseCard("Invisibility");
-        }
-
-        [ContextMenu("Unuse Invisibility card")]
-        private void UnuseInvisibilityCard()
-        {
-            UnuseCard("Invisibility");
+            List<string> returnIds = new List<string>();
+            for (int i = 0; i < count; i++)
+            {
+                returnIds.Add(CardPrefabList[Random.Range(0, CardPrefabList.Count - 1)].CardID);
+            }
+            return returnIds;
         }
     }
 }

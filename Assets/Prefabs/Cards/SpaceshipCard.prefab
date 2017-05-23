@@ -51,4 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409de045a5d9335479bb2b616889d8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipPeopleCount: 0
+  ShipPeopleCount: 100

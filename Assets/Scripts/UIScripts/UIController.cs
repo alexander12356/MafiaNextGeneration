@@ -64,7 +64,8 @@ public class UIController : MonoBehaviour {
 	}
     public void SpawnCards()
     {
-        SpawnCards(Cards.CardBase.instance.GetRandomIds(6));
+        // Сорян, но я уже сделаль :)
+        SpawnCards(MafiaNextGeneration.CardManagerClasses.CardManager.Instance.GetRandomCards(6));// Cards.CardBase.instance.GetRandomIds(6));
     }
 
 

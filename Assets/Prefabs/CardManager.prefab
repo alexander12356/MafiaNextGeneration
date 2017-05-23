@@ -85,3 +85,21 @@ MonoBehaviour:
   - CardID: Oratory
     CardPrefab: {fileID: 114200173440531032, guid: db9102591c38cba449e15cd56ad113ea,
       type: 2}
+  - CardID: BountyHunter
+    CardPrefab: {fileID: 114922304499923664, guid: 1e47d95d79d30ba4f85142d6f1dcd2f8,
+      type: 2}
+  - CardID: Robbery
+    CardPrefab: {fileID: 114468885627969210, guid: 902e523b69367ec42980c0db91f08d64,
+      type: 2}
+  - CardID: Pimp
+    CardPrefab: {fileID: 114068436643720312, guid: b728c17e67592b9448e93296bf615136,
+      type: 2}
+  - CardID: Reket
+    CardPrefab: {fileID: 114039002986995226, guid: 63e274f875164d24c98e0546230895c7,
+      type: 2}
+  - CardID: Dealers
+    CardPrefab: {fileID: 114204128940530006, guid: edfb0d10d88fa3f4aad64866289e0d45,
+      type: 2}
+  - CardID: Insider
+    CardPrefab: {fileID: 114531366397146006, guid: 0916e278c3e45cd42b64307ff35a8a4f,
+      type: 2}
